@@ -184,7 +184,7 @@ if (typeof removeBackground !== "function") {
   throw new Error("AI function load nahi hua. Library loading fail hui.");
 }
   const result=await removeBackground(original,{
-   model:"isnet_quint8",
+ model:"isnet",
    output:{format:"image/png"}
   });
   processed=result;
