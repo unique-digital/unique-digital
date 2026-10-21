@@ -1,1 +1,135 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIQUE DIGITAL | Document Maker</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#172554}
+header{background:linear-gradient(135deg,#101b46,#174ea6);color:white;padding:25px 16px;text-align:center}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0;color:#dbeafe}
+main{max-width:900px;margin:22px auto;padding:0 14px}
+.card{background:white;padding:20px;border-radius:16px;box-shadow:0 5px 22px #17255412;margin-bottom:18px}
+h2{margin-top:0;font-size:21px}
+label{display:block;font-weight:bold;margin:14px 0 6px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px;background:white}
+textarea{min-height:110px;resize:vertical}
+button{border:0;border-radius:9px;padding:12px 16px;font-weight:bold;font-size:15px;cursor:pointer;margin:8px 5px 0 0}
+.primary{background:#174ea6;color:white}
+.secondary{background:#e2e8f0;color:#172554}
+.actions{display:flex;flex-wrap:wrap;gap:5px}
+#preview{background:white;color:#111827;padding:28px;border:1px solid #cbd5e1;border-radius:8px;min-height:240px;overflow-wrap:anywhere}
+#preview h2{text-align:center;margin-bottom:25px}
+footer{text-align:center;color:#64748b;padding:20px}
+@media(max-width:600px){header h1{font-size:23px}.card{padding:15px}#preview{padding:18px}}
+@media print{
+body{background:white}
+header,.editor,.actions,footer,.no-print{display:none!important}
+main{margin:0;padding:0;max-width:none}
+.card{box-shadow:none;border:0;padding:0;margin:0}
+#preview{border:0;padding:0;min-height:0}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>UNIQUE DIGITAL</h1>
+<p>YOUR DIGITAL WORK, MADE EASY</p>
+<p>Professional Document Maker</p>
+</header>
+
+<main>
+<section class="card editor">
+<h2>📝 Document banayein</h2>
+
+<label>Document ka type</label>
+<select id="type" onchange="changeType()">
+<option value="Application">Application / Arzi</option>
+<option value="Biodata">Biodata</option>
+<option value="Declaration">Declaration / Ghoshna Patra</option>
+<option value="General">General Letter / Patra</option>
+</select>
+
+<label>Document ka title</label>
+<input id="title" value="Application" placeholder="Document ka naam">
+
+<label>Aapka poora naam</label>
+<input id="person" placeholder="Poora naam likhein">
+
+<label>Pata</label>
+<textarea id="address" placeholder="Poora pata likhein"></textarea>
+
+<label>Kisko dena hai? (Office / Adhikari)</label>
+<input id="recipient" placeholder="Jaise: Tahsildar / Bank Manager">
+
+<label>Vishay</label>
+<input id="subject" placeholder="Application ka vishay">
+
+<label>Document ka poora matter</label>
+<textarea id="matter" style="min-height:180px" placeholder="Apni application ya arzi yahan likhein..."></textarea>
+
+<div class="actions">
+<button class="primary" onclick="makeDocument()">Preview banayein</button>
+<button class="secondary" onclick="window.print()">Print / PDF Save</button>
+<button class="secondary" onclick="clearForm()">Naya Document</button>
+</div>
+</section>
+
+<section class="card">
+<h2>📄 Document Preview</h2>
+<div id="preview">
+<h2>Application</h2>
+<p>Apni details bharkar “Preview banayein” par click karein.</p>
+</div>
+<div class="actions no-print">
+<button class="primary" onclick="window.print()">Download PDF / Print</button>
+</div>
+</section>
+</main>
+
+<footer>© UNIQUE DIGITAL | Sillod</footer>
+
+<script>
+function safe(value){
+return value.replace(/[&<>"']/g,function(c){
+return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+});
+}
+function makeDocument(){
+const type=safe(document.getElementById('type').value);
+const title=safe(document.getElementById('title').value.trim()||type);
+const person=safe(document.getElementById('person').value.trim());
+const address=safe(document.getElementById('address').value.trim());
+const recipient=safe(document.getElementById('recipient').value.trim());
+const subject=safe(document.getElementById('subject').value.trim());
+const matter=safe(document.getElementById('matter').value.trim());
+document.getElementById('preview').innerHTML=
+'<h2>'+title+'</h2>'+
+(recipient?'<p><b>Prati,</b><br>'+recipient.replace(/\n/g,'<br>')+'</p>':'')+
+(subject?'<p><b>Vishay:</b> '+subject+'</p>':'')+
+(matter?'<p style="white-space:pre-wrap;line-height:1.8">'+matter+'</p>':'<p>Yahan document ka matter likhein.</p>')+
+'<br><p>Dhanyavaad.</p>'+
+'<div style="margin-top:35px"><p><b>Naam:</b> '+(person||'________________')+'</p>'+
+(address?'<p><b>Pata:</b> '+address.replace(/\n/g,'<br>')+'</p>':'')+
+'<p><b>Dinank:</b> '+new Date().toLocaleDateString('en-IN')+'</p>'+
+'<p><b>Signature:</b> __________________</p></div>';
+}
+function changeType(){
+const t=document.getElementById('type').value;
+document.getElementById('title').value=t==='Application'?'Application':t==='Biodata'?'Biodata':t==='Declaration'?'Declaration':'General Letter';
+document.getElementById('subject').placeholder=t==='Biodata'?'Career objective / uddeshya':'Document ka vishay';
+}
+function clearForm(){
+document.querySelectorAll('.editor input,.editor textarea').forEach(e=>e.value='');
+document.getElementById('type').value='Application';
+changeType();
+document.getElementById('preview').innerHTML='<h2>Application</h2><p>Naye document ki details bharein.</p>';
+window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
+
