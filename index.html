@@ -4,156 +4,230 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNIQUE DIGITAL | All Digital Services</title>
-<meta name="theme-color" content="#10264d">
+<meta name="theme-color" content="#0b1630">
+<title>UNIQUE DIGITAL | Digital Service Center</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:#17233b}
-header{background:#10264d;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
-.brand{font-size:25px;font-weight:800;letter-spacing:.5px}
-.brand span{color:#67b5ff}
-header p{margin:5px 0 0;font-size:13px;color:#d5e4ff}
-.hero{text-align:center;padding:48px 16px 32px;background:linear-gradient(135deg,#e7efff,#fff)}
-.hero h1{font-size:clamp(27px,5vw,42px);margin:0 0 12px;color:#10264d}
-.hero p{color:#52627b;line-height:1.7;max-width:600px;margin:0 auto 22px}
-.search{width:min(100%,520px);padding:14px 16px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;outline-color:#1769e0}
-main{max-width:1120px;margin:auto;padding:30px 18px 50px}
-.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
-.section-head h2{margin:0;font-size:25px}
-.count{font-size:13px;color:#64748b}
-.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
-.card{background:#fff;border:1px solid #e2e8f0;border-radius:15px;padding:22px;box-shadow:0 5px 18px #10264d0b;display:flex;flex-direction:column;min-height:230px;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #10264d15}
-.symbol{width:52px;height:52px;border-radius:13px;background:#e8f1ff;display:grid;place-items:center;font-size:27px}
-.card h3{margin:16px 0 8px;font-size:19px}
-.card p{color:#64748b;font-size:14px;line-height:1.6;margin:0 0 18px;flex:1}
-.btn{display:block;text-align:center;text-decoration:none;padding:12px;border-radius:9px;background:#1769e0;color:white;font-weight:bold;font-size:14px}
-.btn:hover{background:#1056bd}
-.btn.soon{background:#edf2f8;color:#43536b}
-.notice{background:#e8f1ff;border-radius:12px;padding:17px;margin-top:25px;color:#29456f;font-size:14px;line-height:1.7}
-footer{text-align:center;background:#10264d;color:#d5e4ff;padding:25px 15px;font-size:13px;line-height:1.8}
+:root{--navy:#0b1630;--blue:#3978ff;--muted:#64748b}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f7fc;color:#17233b}
+a{color:inherit}
+header{background:var(--navy);color:white}
+.nav{max-width:1180px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.logo{width:45px;height:45px;border-radius:13px;background:linear-gradient(135deg,#4387ff,#7148ed);display:grid;place-items:center;font-size:25px;font-weight:bold}
+.brand strong{font-size:21px;letter-spacing:.5px}
+.brand small{display:block;color:#a9bddf;font-size:10px;letter-spacing:1.5px;margin-top:4px}
+.navlinks{display:flex;gap:23px;align-items:center}
+.navlinks a{text-decoration:none;font-size:14px;color:#d7e3f8}
+.navlinks a:hover{color:#80b2ff}
+.navlinks .contact{background:#3978ff;padding:11px 16px;border-radius:9px;color:white}
+.hero{background:radial-gradient(ellipse at 85% 20%,#1d4380 0%,transparent 36%),linear-gradient(130deg,#0b1630,#10274b);color:white;overflow:hidden}
+.hero-inner{max-width:1180px;margin:auto;padding:66px 22px 62px;display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#b9d4ff;border:1px solid #34517c;background:#142849;padding:9px 12px;border-radius:30px;font-size:11px;font-weight:bold;letter-spacing:1px}
+.dot{width:7px;height:7px;border-radius:50%;background:#66e0ad}
+.hero h1{font-size:clamp(36px,5vw,57px);line-height:1.08;letter-spacing:-1.7px;margin:22px 0 18px}
+.hero h1 span{color:#79aaff}
+.hero p{color:#c0cde2;line-height:1.8;font-size:16px;max-width:540px}
+.search{display:flex;gap:10px;margin-top:27px;background:white;padding:7px;border-radius:12px;max-width:540px}
+.search input{border:0;outline:0;flex:1;min-width:0;padding:12px;font-size:14px;color:#17233b}
+.search button{border:0;background:var(--blue);color:white;border-radius:8px;padding:12px 18px;font-weight:bold;cursor:pointer}
+.hero-note{font-size:12px!important;color:#9fb4d4!important;margin-top:15px}
+.hero-art{background:linear-gradient(145deg,#1b3459,#112443);border:1px solid #36527b;border-radius:25px;padding:23px;box-shadow:0 24px 65px #0003;transform:rotate(1deg)}
+.art-top{display:flex;justify-content:space-between;align-items:center;color:#c8d8f0;font-size:12px;margin-bottom:20px}
+.status{background:#1a624d;color:#b7ffdc;padding:7px 9px;border-radius:20px;font-size:10px}
+.feature{background:linear-gradient(135deg,#e6eeff,#fff);color:#17233b;border-radius:17px;padding:22px}
+.feature-icon{width:58px;height:58px;background:#d6e4ff;border-radius:15px;display:grid;place-items:center;font-size:31px}
+.feature h3{font-size:23px;margin:17px 0 9px}
+.feature p{font-size:13px;color:#64748b;line-height:1.7;margin:0 0 18px}
+.primary{display:block;text-align:center;background:var(--blue);color:white;padding:14px;border-radius:10px;text-decoration:none;font-weight:bold;font-size:14px;transition:.2s}
+.primary:hover{background:#205ee0;transform:translateY(-1px)}
+.art-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.mini{background:#1a2d4c;border:1px solid #344968;border-radius:10px;padding:12px 7px;text-align:center;font-size:11px;color:#dbe8ff}
+.mini b{display:block;font-size:21px;margin-bottom:7px}
+main{max-width:1180px;margin:auto;padding:48px 22px 65px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:25px}
+.kicker{font-size:11px;color:#3978ff;font-weight:bold;letter-spacing:1.7px}
+.section-head h2{font-size:clamp(25px,4vw,34px);letter-spacing:-.7px;margin:9px 0 0}
+.section-head p{color:var(--muted);font-size:13px;line-height:1.6;margin:8px 0 0}
+.count{font-size:12px;color:#64748b;background:white;border:1px solid #e1e7f0;border-radius:30px;padding:9px 12px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{background:white;border:1px solid #e5eaf2;border-radius:16px;padding:23px;min-height:222px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 13px 30px #1b315710;border-color:#b8ceff}
+.card-icon{width:52px;height:52px;background:#edf3ff;border-radius:14px;display:grid;place-items:center;font-size:26px}
+.card h3{font-size:17px;margin:16px 0 8px}
+.card p{font-size:13px;line-height:1.7;color:#64748b;margin:0 0 18px;flex:1}
+.card a{display:flex;align-items:center;justify-content:space-between;text-decoration:none;font-weight:bold;font-size:13px;color:#2865dc;border-top:1px solid #edf0f5;padding-top:15px}
+.card a:hover{color:#103c9a}
+.card a.disabled{color:#8792a5;cursor:default}
+.empty{grid-column:1/-1;text-align:center;background:white;padding:35px;border-radius:14px;color:#64748b}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:42px}
+.trust-item{background:#eaf0fa;border-radius:13px;padding:19px;display:flex;gap:12px;align-items:center}
+.trust-icon{font-size:25px}
+.trust-item strong{display:block;font-size:13px}
+.trust-item small{display:block;color:#64748b;margin-top:5px;line-height:1.5}
+footer{background:#0b1630;color:#d7e3f8;padding:32px 22px}
+.footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+footer p{font-size:12px;line-height:1.8;color:#9fb4d4}
+footer a{color:#cfe0ff;text-decoration:none}
 [hidden]{display:none!important}
-@media(max-width:480px){header{justify-content:center;text-align:center}.hero{padding-top:35px}.card{min-height:210px}}
+@media(max-width:850px){.hero-inner{grid-template-columns:1fr;padding-top:48px}.hero-art{max-width:560px;width:100%;margin:auto}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{gap:12px}}
+@media(max-width:560px){.nav{padding:15px}.brand strong{font-size:18px}.navlinks a:not(.contact){display:none}.navlinks .contact{padding:10px;font-size:12px}.hero-inner{padding:43px 17px}.hero h1{letter-spacing:-1px}.search button{padding:11px}.hero-art{padding:14px}.feature{padding:17px}main{padding:37px 15px 45px}.grid{grid-template-columns:1fr}.card{min-height:195px;padding:20px}.section-head{align-items:start}.count{margin-top:5px}.trust{grid-template-columns:1fr}.trust-item{padding:15px}}
 </style>
 </head>
 <body>
 <header>
-  <div>
-    <div class="brand">UNIQUE <span>DIGITAL</span></div>
-    <p>Your Digital Services Center</p>
-  </div>
-  <div>📍 Digital Services • Photo • Documents</div>
+  <nav class="nav">
+    <a class="brand" href="index.html">
+      <span class="logo">U</span>
+      <span><strong>UNIQUE DIGITAL</strong><small>DIGITAL SERVICE CENTER</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a class="contact" href="#services">Explore Services ↗</a>
+    </div>
+  </nav>
 </header>
 
-<section class="hero">
-  <h1>All Digital Services in One Place</h1>
-  <p>Photo editing, printing, document making aur digital tools — apni zaroorat ki service chunein.</p>
-  <input class="search" id="search" type="search"
-    placeholder="🔍 Search services..." aria-label="Search services">
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> ONE PLATFORM · MANY SERVICES</span>
+      <h1>Your Digital Work,<br><span>Made Simple.</span></h1>
+      <p>Photo editing, printing, documents aur digital tools — apni zaroorat ki service ek hi jagah chunein.</p>
+      <div class="search">
+        <input id="search" type="search" placeholder="Search services..." aria-label="Search services">
+        <button id="searchBtn" type="button">Search ↗</button>
+      </div>
+      <p class="hero-note">✦ Simple to use · Computer & mobile friendly</p>
+    </div>
+
+    <div class="hero-art">
+      <div class="art-top"><strong>YOUR DIGITAL WORKSPACE</strong><span class="status">● WELCOME</span></div>
+      <div class="feature">
+        <div class="feature-icon">📸</div>
+        <h3>Professional Photo Studio</h3>
+        <p>Passport photo, background tools, brightness aur photo export — shuruaat yahin se karein.</p>
+        <a class="primary" href="photo-tool.html">Open Photo Studio&nbsp; →</a>
+      </div>
+      <div class="art-bottom">
+        <div class="mini"><b>🖼️</b>Photo Tools</div>
+        <div class="mini"><b>📄</b>Documents</div>
+        <div class="mini"><b>🖨️</b>Printing</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<main>
+<main id="services">
   <div class="section-head">
-    <h2>Our Services</h2>
+    <div>
+      <span class="kicker">EXPLORE OUR PLATFORM</span>
+      <h2>Services for Every Need</h2>
+      <p>Apni service select karein. Naye tools dheere-dheere add honge.</p>
+    </div>
     <span class="count" id="count">9 services</span>
   </div>
 
-  <div class="services" id="services">
-
-    <article class="card" data-search="photo studio passport photo background remove white blue beauty brightness hd">
-      <div class="symbol">📸</div>
-      <h3>Photo Studio</h3>
-      <p>Passport photo, background removal, white/blue background, brightness aur photo download.</p>
-      <a class="btn" href="photo-tool.html">Open Photo Studio →</a>
+  <div class="grid" id="grid">
+    <article class="card" data-search="photo studio passport photo background remove white blue brightness beauty">
+      <div class="card-icon">📸</div><h3>Photo Studio</h3>
+      <p>Passport photo, background removal, background colours aur photo adjustments.</p>
+      <a href="photo-tool.html">Open Photo Studio <span>↗</span></a>
     </article>
 
-    <article class="card" data-search="photo print 4x6 inch multiple photos print sheet">
-      <div class="symbol">🖨️</div>
-      <h3>Photo Print</h3>
+    <article class="card" data-search="photo print 4x6 inch multiple photos">
+      <div class="card-icon">🖨️</div><h3>Photo Print</h3>
       <p>4×6 inch sheet par multiple photos set karne ke tools.</p>
-      <a class="btn soon" href="photo-tool.html">Open Photo Tool →</a>
+      <a class="disabled" href="#services" data-soon="Photo Print">Coming Soon <span>→</span></a>
     </article>
 
-    <article class="card" data-search="form filling application customer details forms">
-      <div class="symbol">📝</div>
-      <h3>Form Filling</h3>
-      <p>Customer details se forms aur applications taiyar karne ki service.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    <article class="card" data-search="form filling applications customer details">
+      <div class="card-icon">📝</div><h3>Form Filling</h3>
+      <p>Customer details se applications aur forms taiyar karne ke tools.</p>
+      <a class="disabled" href="#services" data-soon="Form Filling">Coming Soon <span>→</span></a>
     </article>
 
     <article class="card" data-search="pdf tools merge split compress convert">
-      <div class="symbol">📑</div>
-      <h3>PDF Tools</h3>
-      <p>PDF merge, split, compress aur file conversion tools.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+      <div class="card-icon">📑</div><h3>PDF Tools</h3>
+      <p>PDF merge, split, compress aur document conversion.</p>
+      <a class="disabled" href="#services" data-soon="PDF Tools">Coming Soon <span>→</span></a>
     </article>
 
     <article class="card" data-search="document maker marriage biodata resume letters">
-      <div class="symbol">📄</div>
-      <h3>Document Maker</h3>
-      <p>Marriage biodata, job resume, letters aur applications.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+      <div class="card-icon">📄</div><h3>Document Maker</h3>
+      <p>Marriage biodata, resume, letters aur applications banayein.</p>
+      <a class="disabled" href="#services" data-soon="Document Maker">Coming Soon <span>→</span></a>
     </article>
 
-    <article class="card" data-search="image tools resize crop jpg png format convert">
-      <div class="symbol">🖼️</div>
-      <h3>Image Tools</h3>
+    <article class="card" data-search="image tools resize crop jpg png convert">
+      <div class="card-icon">🖼️</div><h3>Image Tools</h3>
       <p>Image resize, crop aur JPG/PNG format conversion.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+      <a class="disabled" href="#services" data-soon="Image Tools">Coming Soon <span>→</span></a>
     </article>
 
-    <article class="card" data-search="marathi hindi typing application name">
-      <div class="symbol">⌨️</div>
-      <h3>Marathi / Hindi Typing</h3>
-      <p>Naam, applications aur documents ki Hindi aur Marathi typing.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    <article class="card" data-search="marathi hindi typing name application">
+      <div class="card-icon">⌨️</div><h3>Marathi / Hindi Typing</h3>
+      <p>Naam, applications aur documents ki typing ke tools.</p>
+      <a class="disabled" href="#services" data-soon="Marathi / Hindi Typing">Coming Soon <span>→</span></a>
     </article>
 
-    <article class="card" data-search="customer dashboard orders files payment status login">
-      <div class="symbol">👤</div>
-      <h3>Customer Dashboard</h3>
-      <p>Customer files, orders aur payment status dekhne ka future portal.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    <article class="card" data-search="customer dashboard files orders payment status">
+      <div class="card-icon">👤</div><h3>Customer Dashboard</h3>
+      <p>Customer orders, files aur payment status ke liye future portal.</p>
+      <a class="disabled" href="#services" data-soon="Customer Dashboard">Coming Soon <span>→</span></a>
     </article>
 
-    <article class="card" data-search="admin panel manage services orders administration">
-      <div class="symbol">🛡️</div>
-      <h3>Admin Panel</h3>
+    <article class="card" data-search="admin panel manage services orders">
+      <div class="card-icon">🛡️</div><h3>Admin Panel</h3>
       <p>Services aur orders manage karne ke liye admin workspace.</p>
-      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+      <a class="disabled" href="#services" data-soon="Admin Panel">Coming Soon <span>→</span></a>
     </article>
-
   </div>
 
-  <div class="notice">
-    <strong>Welcome to UNIQUE DIGITAL!</strong><br>
-    Photo Studio pehle taiyar kiya ja raha hai. Baaki services ko ek-ek karke working banaya jayega.
+  <div class="trust">
+    <div class="trust-item"><span class="trust-icon">⚡</span><div><strong>Simple Experience</strong><small>Saaf aur aasaan service navigation.</small></div></div>
+    <div class="trust-item"><span class="trust-icon">📱</span><div><strong>Mobile Friendly</strong><small>Mobile aur computer dono ke liye design.</small></div></div>
+    <div class="trust-item"><span class="trust-icon">🧰</span><div><strong>Growing Platform</strong><small>Naye digital tools ek-ek karke add honge.</small></div></div>
   </div>
 </main>
 
 <footer>
-  <strong>UNIQUE DIGITAL</strong><br>
-  Your Digital Services Center<br>
-  © 2026 UNIQUE DIGITAL
+  <div class="footer-inner">
+    <div><strong>UNIQUE DIGITAL</strong><p>Your Digital Service Center</p></div>
+    <div><a href="#home">Home</a> &nbsp; | &nbsp; <a href="#services">Services</a><p>© 2026 UNIQUE DIGITAL</p></div>
+  </div>
 </footer>
 
 <script>
-const search = document.getElementById('search');
-const cards = [...document.querySelectorAll('.card')];
-const count = document.getElementById('count');
+const input=document.getElementById('search');
+const cards=[...document.querySelectorAll('.card')];
+const count=document.getElementById('count');
 
-search.addEventListener('input', function(){
-  const term = this.value.toLowerCase().trim();
-  let visible = 0;
-
-  cards.forEach(card => {
-    const match = (card.innerText + ' ' + card.dataset.search)
-      .toLowerCase().includes(term);
-    card.hidden = !match;
-    if(match) visible++;
+function filterServices(){
+  const term=input.value.toLowerCase().trim();
+  let visible=0;
+  cards.forEach(card=>{
+    const match=(card.innerText+' '+card.dataset.search).toLowerCase().includes(term);
+    card.hidden=!match;
+    if(match)visible++;
   });
-
-  count.textContent = visible + (visible === 1 ? ' service' : ' services');
+  count.textContent=visible+' service'+(visible===1?'':'s');
+  document.getElementById('services').scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('searchBtn').addEventListener('click',filterServices);
+input.addEventListener('keydown',e=>{if(e.key==='Enter')filterServices()});
+input.addEventListener('input',()=>{
+  if(!input.value.trim()){
+    cards.forEach(c=>c.hidden=false);
+    count.textContent='9 services';
+  }
+});
+document.querySelectorAll('[data-soon]').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    alert(link.dataset.soon+' abhi taiyar nahi hai. Is service ko baad mein working banayenge.');
+  });
 });
 </script>
 </body>
