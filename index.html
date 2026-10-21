@@ -1,407 +1,159 @@
 
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>UNIQUE DIGITAL | Passport Photo Creator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIQUE DIGITAL | All Digital Services</title>
+<meta name="theme-color" content="#10264d">
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#eef2f7;color:#172033}
-header{background:#10264d;color:white;text-align:center;padding:22px 12px}
-header h1{margin:0;font-size:28px}
-header p{margin:8px 0 0}
-main{max-width:900px;margin:22px auto;padding:12px}
-.card{background:white;border-radius:15px;padding:20px;box-shadow:0 4px 18px #0001}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-label{display:block;font-weight:bold;margin:14px 0 7px}
-input,select,button{font:inherit}
-input[type=file],select,input[type=number]{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;background:white}
-input[type=range]{width:100%}
-button{border:0;border-radius:8px;padding:12px;font-weight:bold;cursor:pointer}
-.primary{background:#1769e0;color:white;width:100%;margin-top:17px}
-.green{background:#087b48;color:white}
-.blue{background:#e5efff;color:#174ea6}
-.actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin-top:12px}
-.actions button{width:100%}
-#status{padding:12px;background:#eff6ff;border-radius:8px;margin-top:15px;overflow-wrap:anywhere;line-height:1.5}
-#preview{margin-top:20px;text-align:center}
-canvas{display:block;max-width:100%;height:auto;margin:12px auto;border:1px solid #d1d5db;background:repeating-conic-gradient(#eee 0 25%,white 0 50%) 0/16px 16px}
-.note{font-size:13px;color:#64748b;line-height:1.6}
-small{color:#64748b}
-footer{text-align:center;padding:22px;color:#64748b;font-size:13px}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:#17233b}
+header{background:#10264d;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.brand{font-size:25px;font-weight:800;letter-spacing:.5px}
+.brand span{color:#67b5ff}
+header p{margin:5px 0 0;font-size:13px;color:#d5e4ff}
+.hero{text-align:center;padding:48px 16px 32px;background:linear-gradient(135deg,#e7efff,#fff)}
+.hero h1{font-size:clamp(27px,5vw,42px);margin:0 0 12px;color:#10264d}
+.hero p{color:#52627b;line-height:1.7;max-width:600px;margin:0 auto 22px}
+.search{width:min(100%,520px);padding:14px 16px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;outline-color:#1769e0}
+main{max-width:1120px;margin:auto;padding:30px 18px 50px}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.section-head h2{margin:0;font-size:25px}
+.count{font-size:13px;color:#64748b}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:15px;padding:22px;box-shadow:0 5px 18px #10264d0b;display:flex;flex-direction:column;min-height:230px;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #10264d15}
+.symbol{width:52px;height:52px;border-radius:13px;background:#e8f1ff;display:grid;place-items:center;font-size:27px}
+.card h3{margin:16px 0 8px;font-size:19px}
+.card p{color:#64748b;font-size:14px;line-height:1.6;margin:0 0 18px;flex:1}
+.btn{display:block;text-align:center;text-decoration:none;padding:12px;border-radius:9px;background:#1769e0;color:white;font-weight:bold;font-size:14px}
+.btn:hover{background:#1056bd}
+.btn.soon{background:#edf2f8;color:#43536b}
+.notice{background:#e8f1ff;border-radius:12px;padding:17px;margin-top:25px;color:#29456f;font-size:14px;line-height:1.7}
+footer{text-align:center;background:#10264d;color:#d5e4ff;padding:25px 15px;font-size:13px;line-height:1.8}
+[hidden]{display:none!important}
+@media(max-width:480px){header{justify-content:center;text-align:center}.hero{padding-top:35px}.card{min-height:210px}}
 </style>
 </head>
 <body>
 <header>
-<h1>UNIQUE DIGITAL</h1>
-<p>Professional Passport Photo Creator</p>
+  <div>
+    <div class="brand">UNIQUE <span>DIGITAL</span></div>
+    <p>Your Digital Services Center</p>
+  </div>
+  <div>📍 Digital Services • Photo • Documents</div>
 </header>
 
-<main>
-<section class="card">
-<h2>Photo Editor</h2>
-<p>Photo upload karein. AI background remove karein, size aur colour chunein.</p>
-
-<label for="photo">1. Apni photo upload karein</label>
-<input id="photo" type="file" accept="image/*">
-
-<div class="grid">
-<div>
-<label for="size">2. Passport photo size</label>
-<select id="size">
-<option value="passport">1.2 × 1.4 inch</option>
-<option value="square">2 × 2 inch</option>
-<option value="35x45">35 × 45 mm</option>
-<option value="custom">Custom size</option>
-<option value="original">Original size</option>
-</select>
-</div>
-<div>
-<label for="dpi">Print resolution</label>
-<select id="dpi">
-<option value="300">300 DPI</option>
-<option value="200">200 DPI</option>
-<option value="150">150 DPI</option>
-</select>
-</div>
-</div>
-
-<div id="customBox" class="grid" hidden>
-<div>
-<label for="customW">Width (inch)</label>
-<input id="customW" type="number" min="0.3" max="8" step="0.1" value="1.2">
-</div>
-<div>
-<label for="customH">Height (inch)</label>
-<input id="customH" type="number" min="0.3" max="8" step="0.1" value="1.4">
-</div>
-</div>
-
-<label for="bg">3. Background colour</label>
-<select id="bg">
-<option value="white">White</option>
-<option value="blue">Light Blue</option>
-<option value="red">Red</option>
-<option value="grey">Light Grey</option>
-<option value="color">Custom Colour</option>
-<option value="transparent">Transparent PNG</option>
-</select>
-
-<div id="colorBox" hidden>
-<label for="color">Apna colour chunein</label>
-<input id="color" type="color" value="#ffffff">
-</div>
-
-<button id="remove" class="primary">AI Background Remove Karein</button>
-<div id="status" role="status" aria-live="polite">Pehle photo upload karein.</div>
-
-<hr>
-<h3>4. Natural Photo Enhancement</h3>
-<p class="note">Ye controls poori photo ki lighting aur colour adjust karte hain. Ye AI skin retouch ya face reconstruction nahi hain.</p>
-
-<label for="brightness">Brightness: <span id="bv">100%</span></label>
-<input id="brightness" type="range" min="70" max="135" value="100">
-
-<label for="contrast">Contrast: <span id="cv">100%</span></label>
-<input id="contrast" type="range" min="70" max="135" value="100">
-
-<label for="saturation">Colour: <span id="sv">100%</span></label>
-<input id="saturation" type="range" min="0" max="130" value="100">
-
-<button id="reset" class="blue" style="width:100%;margin-top:12px">Beauty Adjustments Reset</button>
-
-<div id="preview" hidden>
-<hr>
-<h3>Final Photo Preview</h3>
-<canvas id="canvas"></canvas>
-<p id="dimensions"></p>
-<div class="actions">
-<button id="download" class="green">HD PNG Download</button>
-<button id="jpg" class="blue">JPG Download</button>
-<button id="print" class="blue">A4 Photo Sheet Print</button>
-</div>
-</div>
-
-<p class="note">
-AI model pehli baar load hone mein samay lag sakta hai. Internet chalu rakhein.
-Photo ka sahi size aur background apne form ya passport authority ke rules se verify karein.
-</p>
+<section class="hero">
+  <h1>All Digital Services in One Place</h1>
+  <p>Photo editing, printing, document making aur digital tools — apni zaroorat ki service chunein.</p>
+  <input class="search" id="search" type="search"
+    placeholder="🔍 Search services..." aria-label="Search services">
 </section>
+
+<main>
+  <div class="section-head">
+    <h2>Our Services</h2>
+    <span class="count" id="count">9 services</span>
+  </div>
+
+  <div class="services" id="services">
+
+    <article class="card" data-search="photo studio passport photo background remove white blue beauty brightness hd">
+      <div class="symbol">📸</div>
+      <h3>Photo Studio</h3>
+      <p>Passport photo, background removal, white/blue background, brightness aur photo download.</p>
+      <a class="btn" href="photo-tool.html">Open Photo Studio →</a>
+    </article>
+
+    <article class="card" data-search="photo print 4x6 inch multiple photos print sheet">
+      <div class="symbol">🖨️</div>
+      <h3>Photo Print</h3>
+      <p>4×6 inch sheet par multiple photos set karne ke tools.</p>
+      <a class="btn soon" href="photo-tool.html">Open Photo Tool →</a>
+    </article>
+
+    <article class="card" data-search="form filling application customer details forms">
+      <div class="symbol">📝</div>
+      <h3>Form Filling</h3>
+      <p>Customer details se forms aur applications taiyar karne ki service.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="pdf tools merge split compress convert">
+      <div class="symbol">📑</div>
+      <h3>PDF Tools</h3>
+      <p>PDF merge, split, compress aur file conversion tools.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="document maker marriage biodata resume letters">
+      <div class="symbol">📄</div>
+      <h3>Document Maker</h3>
+      <p>Marriage biodata, job resume, letters aur applications.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="image tools resize crop jpg png format convert">
+      <div class="symbol">🖼️</div>
+      <h3>Image Tools</h3>
+      <p>Image resize, crop aur JPG/PNG format conversion.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="marathi hindi typing application name">
+      <div class="symbol">⌨️</div>
+      <h3>Marathi / Hindi Typing</h3>
+      <p>Naam, applications aur documents ki Hindi aur Marathi typing.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="customer dashboard orders files payment status login">
+      <div class="symbol">👤</div>
+      <h3>Customer Dashboard</h3>
+      <p>Customer files, orders aur payment status dekhne ka future portal.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+    <article class="card" data-search="admin panel manage services orders administration">
+      <div class="symbol">🛡️</div>
+      <h3>Admin Panel</h3>
+      <p>Services aur orders manage karne ke liye admin workspace.</p>
+      <a class="btn soon" href="photo-tool.html">Coming Soon</a>
+    </article>
+
+  </div>
+
+  <div class="notice">
+    <strong>Welcome to UNIQUE DIGITAL!</strong><br>
+    Photo Studio pehle taiyar kiya ja raha hai. Baaki services ko ek-ek karke working banaya jayega.
+  </div>
 </main>
-<footer>UNIQUE DIGITAL | Photo Editing Studio</footer>
 
-<script type="module">
-const $ = id => document.getElementById(id);
-const photo = $('photo');
-const canvas = $('canvas');
-const ctx = canvas.getContext('2d');
+<footer>
+  <strong>UNIQUE DIGITAL</strong><br>
+  Your Digital Services Center<br>
+  © 2026 UNIQUE DIGITAL
+</footer>
 
-let sourceFile = null;
-let cutoutBlob = null;
-let ai = null;
-let busy = false;
-let renderVersion = 0;
-
-function say(message){ $('status').textContent = message; }
-
-photo.addEventListener('change', () => {
-  sourceFile = photo.files[0] || null;
-  cutoutBlob = null;
-  renderVersion++;
-  $('preview').hidden = true;
-
-  if(sourceFile) say('Photo select ho gayi. AI Background Remove dabayein.');
-  else say('Photo upload karein.');
-});
-
-$('size').addEventListener('change', () => {
-  $('customBox').hidden = $('size').value !== 'custom';
-  if(cutoutBlob) render();
-});
-
-$('bg').addEventListener('change', () => {
-  $('colorBox').hidden = $('bg').value !== 'color';
-  if(cutoutBlob) render();
-});
-
-$('color').addEventListener('input', () => {
-  if(cutoutBlob && $('bg').value === 'color') render();
-});
-
-for(const id of ['brightness','contrast','saturation']){
-  $(id).addEventListener('input', () => {
-    const letter = {brightness:'bv',contrast:'cv',saturation:'sv'}[id];
-    $(letter).textContent = $(id).value + '%';
-    if(cutoutBlob) render();
-  });
-}
-
-$('reset').addEventListener('click', () => {
-  $('brightness').value = 100;
-  $('contrast').value = 100;
-  $('saturation').value = 100;
-  $('bv').textContent = '100%';
-  $('cv').textContent = '100%';
-  $('sv').textContent = '100%';
-  if(cutoutBlob) render();
-});
-
-async function loadAI(){
-  if(ai) return ai;
-  say('AI library download ho rahi hai. Pehli baar intezar karein...');
-
-  const module = await import(
-    'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm'
-  );
-
-  ai = module.default || module.removeBackground;
-  if(typeof ai !== 'function') throw new Error('AI function nahi mili.');
-  return ai;
-}
-
-$('remove').addEventListener('click', async () => {
-  if(busy) return;
-  if(!sourceFile){
-    say('Pehle photo upload karein.');
-    return;
-  }
-
-  busy = true;
-  $('remove').disabled = true;
-  $('preview').hidden = true;
-
-  try{
-    const removeBackground = await loadAI();
-    say('AI photo ka background remove kar raha hai. Photo size aur computer ke hisaab se samay lagega...');
-
-    const result = await removeBackground(sourceFile);
-
-    if(!result || !result.size) throw new Error('AI ne khaali image di.');
-
-    cutoutBlob = result;
-    await render();
-    $('preview').hidden = false;
-    say('Background remove ho gaya. Colour, size aur enhancement chunein.');
-
-  }catch(error){
-    console.error('Background removal:', error);
-    cutoutBlob = null;
-    say('AI ERROR: ' + (error?.message || String(error)) +
-      '. Internet check karein. Agar dobara error aaye, F12 > Console ka error dekhein.');
-  }finally{
-    busy = false;
-    $('remove').disabled = false;
-  }
-});
-
-function imageFromBlob(blob){
-  return new Promise((resolve,reject) => {
-    const url = URL.createObjectURL(blob);
-    const img = new Image();
-
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve(img);
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error('Processed image open nahi hui.'));
-    };
-    img.src = url;
-  });
-}
-
-function dimensions(){
-  const selected = $('size').value;
-  const dpi = Number($('dpi').value);
-
-  if(selected === 'passport') return [Math.round(1.2*dpi),Math.round(1.4*dpi)];
-  if(selected === 'square') return [2*dpi,2*dpi];
-  if(selected === '35x45') return [Math.round(35/25.4*dpi),Math.round(45/25.4*dpi)];
-  if(selected === 'custom'){
-    const w = Number($('customW').value);
-    const h = Number($('customH').value);
-    if(!(w>=0.3 && w<=8 && h>=0.3 && h<=8)){
-      throw new Error('Custom size 0.3 se 8 inch ke beech rakhein.');
-    }
-    return [Math.round(w*dpi),Math.round(h*dpi)];
-  }
-  return null;
-}
-
-async function render(){
-  if(!cutoutBlob) return;
-  const version = ++renderVersion;
-  const img = await imageFromBlob(cutoutBlob);
-  if(version !== renderVersion) return;
-
-  let dims = dimensions();
-  let w = dims ? dims[0] : img.naturalWidth;
-  let h = dims ? dims[1] : img.naturalHeight;
-
-  // Browser canvas limit se bachne ke liye bahut bade output ko limit karein.
-  const maxSide = 5000;
-  if(Math.max(w,h)>maxSide){
-    const ratio = maxSide/Math.max(w,h);
-    w = Math.round(w*ratio);
-    h = Math.round(h*ratio);
-  }
-
-  canvas.width = w;
-  canvas.height = h;
-  ctx.clearRect(0,0,w,h);
-
-  const background = $('bg').value;
-  const colours = {
-    white:'#ffffff',
-    blue:'#dceeff',
-    red:'#ff0000',
-    grey:'#e5e7eb'
-  };
-
-  if(background !== 'transparent'){
-    ctx.fillStyle = background === 'color' ? $('color').value : colours[background];
-    ctx.fillRect(0,0,w,h);
-  }
-
-  const scale = Math.min(w/img.naturalWidth,h/img.naturalHeight);
-  const dw = img.naturalWidth*scale;
-  const dh = img.naturalHeight*scale;
-
-  ctx.save();
-  ctx.filter =
-    'brightness(' + $('brightness').value + '%) ' +
-    'contrast(' + $('contrast').value + '%) ' +
-    'saturate(' + $('saturation').value + '%)';
-  ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
-  ctx.restore();
-
-  $('dimensions').textContent = w + ' × ' + h + ' pixels' +
-    (dims ? ' | Selected DPI: ' + $('dpi').value : ' | Original size');
-  $('preview').hidden = false;
-}
-
-function download(type){
-  if(!cutoutBlob || !canvas.width){
-    say('Pehle AI background removal complete karein.');
-    return;
-  }
-
-  canvas.toBlob(blob => {
-    if(!blob){
-      say('Image export nahi ho paayi. Dobara try karein.');
-      return;
-    }
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = type === 'image/jpeg'
-      ? 'unique-digital-passport.jpg'
-      : 'unique-digital-passport.png';
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(url),3000);
-    say('Download shuru ho gaya!');
-  },type,type === 'image/jpeg' ? 0.95 : undefined);
-}
-
-$('download').addEventListener('click', () => download('image/png'));
-$('jpg').addEventListener('click', () => download('image/jpeg'));
-
-$('print').addEventListener('click', () => {
-  if(!cutoutBlob || !canvas.width){
-    say('Pehle photo taiyar karein.');
-    return;
-  }
-
-  // A4 page, 10 mm margins, repeated photos with 3 mm gaps.
-  const data = canvas.toDataURL('image/png');
-  const wIn = canvas.width / Number($('dpi').value);
-  const hIn = canvas.height / Number($('dpi').value);
-  const wMm = wIn * 25.4;
-  const hMm = hIn * 25.4;
-
-  if(wMm > 190 || hMm > 277){
-    say('Ye photo A4 print area se badi hai. Chhota photo size chunein.');
-    return;
-  }
-
-  const cols = Math.floor((190 + 3)/(wMm + 3));
-  const rows = Math.floor((277 + 3)/(hMm + 3));
-  if(cols<1 || rows<1){
-    say('Photo A4 page par fit nahi hoti.');
-    return;
-  }
-
-  const win = window.open('', '_blank');
-  if(!win){
-    say('Print window block hui. Browser mein pop-ups allow karein.');
-    return;
-  }
-
-  let items = '';
-  for(let i=0;i<cols*rows;i++){
-    items += '<img src="' + data + '" alt="Passport photo">';
-  }
-
-  win.document.write(`<!DOCTYPE html>
-<html><head><title>UNIQUE DIGITAL A4 Photo Sheet</title>
-<style>
-@page{size:A4 portrait;margin:10mm}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial}
-.sheet{display:grid;grid-template-columns:repeat(${cols},${wMm}mm);grid-auto-rows:${hMm}mm;gap:3mm;align-content:start;justify-content:start}
-img{width:${wMm}mm;height:${hMm}mm;object-fit:contain}
-@media screen{body{padding:10mm}.sheet{outline:1px solid #ddd}}
-</style></head><body>
-<div class="sheet">${items}</div>
 <script>
-window.onload=()=>setTimeout(()=>window.print(),500);
-<\/script>
-</body></html>`);
-  win.document.close();
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.card')];
+const count = document.getElementById('count');
+
+search.addEventListener('input', function(){
+  const term = this.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(card => {
+    const match = (card.innerText + ' ' + card.dataset.search)
+      .toLowerCase().includes(term);
+    card.hidden = !match;
+    if(match) visible++;
+  });
+
+  count.textContent = visible + (visible === 1 ? ' service' : ' services');
 });
 </script>
 </body>
