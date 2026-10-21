@@ -172,6 +172,28 @@ function openService(name){
 
   }
   panel.scrollIntoView({behavior:'smooth',block:'start'});
+  
+function openService(name){
+  const panel = document.getElementById('panel');
+  panel.style.display = 'block';
+
+  const service = String(name).toLowerCase();
+
+  if(service.includes('passport') || service.includes('photo')){
+    window.location.href = './photo-tool.html';
+    return;
+  } else if(name === 'Application Maker'){
+    panel.innerHTML = '<h2>Application Maker</h2><p>Application ke liye details bharein:</p><input id="person" placeholder="Aapka poora naam"><input id="purpose" placeholder="Application ka subject"><textarea id="details" placeholder="Application ki details"></textarea><button onclick="makeLetter()">Application taiyar karein</button><div id="result"></div>';
+  } else if(name === 'Biodata & Resume'){
+    panel.innerHTML = '<h2>Biodata & Resume</h2><input id="bioName" placeholder="Poora naam"><input id="bioEducation" placeholder="Education"><input id="bioWork" placeholder="Work / Profession"><button onclick="makeBio()">Biodata preview banayein</button><div id="result"></div>';
+  } else {
+    panel.innerHTML = '<h2>' + name + '</h2><p>Ye service UNIQUE DIGITAL mein plan ki gayi hai. Iska working tool agle development step mein add hoga.</p><p>Filhaal ye homepage ka service preview hai.</p>';
+  }
+
+  panel.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
 }
 
 function makeLetter(){
