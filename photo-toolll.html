@@ -3,130 +3,137 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNIQUE DIGITAL - AI Photo Editor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UNIQUE DIGITAL - Passport Photo Maker</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#172033}
-header{background:#10264d;color:white;text-align:center;padding:24px 12px}
-header h1{margin:0;font-size:28px}
-header p{margin:8px 0 0;color:#dbeafe}
-main{max-width:850px;margin:25px auto;padding:20px}
-.card{background:white;padding:22px;border-radius:16px;box-shadow:0 4px 18px #00000010}
-label{display:block;font-weight:bold;margin:16px 0 8px}
-input,select,button{font:inherit}
-input[type=file],select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:8px;background:white}
-button{border:0;border-radius:9px;padding:13px 16px;font-weight:bold;cursor:pointer}
-.primary{background:#1769e0;color:white;width:100%;margin-top:18px}
-.download{background:#087b48;color:white;width:100%;margin-top:12px}
-button:disabled{opacity:.5;cursor:not-allowed}
-#colorRow{display:flex;gap:12px;align-items:center}
-input[type=color]{width:60px;height:42px;cursor:pointer}
-#preview{margin-top:20px;text-align:center}
-canvas{max-width:100%;height:auto;border:1px solid #ddd;border-radius:8px}
-#status{margin-top:15px;padding:12px;border-radius:8px;background:#eff6ff;line-height:1.5}
-.note{font-size:13px;color:#64748b;line-height:1.5}
-footer{text-align:center;padding:20px;color:#64748b;font-size:13px}
+body{margin:0;background:#f1f5f9;color:#172033;font-family:Arial,sans-serif}
+header{background:#10264d;color:white;text-align:center;padding:22px 12px}
+header h1{margin:0}
+main{max-width:650px;margin:24px auto;padding:12px}
+.card{background:white;padding:20px;border-radius:14px;box-shadow:0 4px 18px #0001}
+label{display:block;font-weight:bold;margin:16px 0 7px}
+input,select,button{font:inherit;width:100%;padding:12px;border-radius:8px}
+input,select{border:1px solid #cbd5e1;background:white}
+button{border:0;font-weight:bold;cursor:pointer;margin-top:12px}
+.primary{background:#1769e0;color:white}
+.download{background:#087b48;color:white}
+button:disabled{opacity:.55}
+#colorRow{display:flex;align-items:center;gap:12px}
+#color{width:65px;height:44px;padding:3px}
+#status{background:#eff6ff;padding:12px;border-radius:8px;margin-top:15px;overflow-wrap:anywhere}
+#preview{text-align:center;margin-top:20px}
+canvas{max-width:100%;height:auto;border:1px solid #ddd}
+.note{font-size:13px;color:#64748b;line-height:1.6}
 </style>
 </head>
 <body>
 <header>
-  <h1>UNIQUE DIGITAL</h1>
-  <p>AI Passport Photo & Background Editor</p>
+<h1>UNIQUE DIGITAL</h1>
+<p>Passport Photo & Background Editor</p>
 </header>
-
 <main>
 <section class="card">
-  <h2>Photo Background Editor</h2>
-  <p>Photo upload karein, AI se background remove karein aur apna background chunein.</p>
+<h2>Passport Photo Maker</h2>
+<p>Photo upload karein aur background remove karein.</p>
 
-  <label for="photo">1. Apni photo select karein</label>
-  <input type="file" id="photo" accept="image/*">
+<label for="photo">1. Apni photo select karein</label>
+<input type="file" id="photo" accept="image/*">
 
-  <label for="background">2. Background ka option chunein</label>
-  <select id="background">
-    <option value="white">White Background</option>
-    <option value="color">Apna Color Chunein</option>
-    <option value="transparent">Transparent Background (PNG)</option>
-  </select>
+<label for="size">2. Photo ka size chunein</label>
+<select id="size">
+<option value="passport">1.2 × 1.4 inch (360 × 420 px)</option>
+<option value="2x2">2 × 2 inch (600 × 600 px)</option>
+<option value="original">Original Photo Size</option>
+</select>
 
-  <div id="colorBox" hidden>
-    <label for="color">Apna pasandida color chunein</label>
-    <div id="colorRow">
-      <input type="color" id="color" value="#ffffff">
-      <span id="colorCode">#ffffff</span>
-    </div>
-  </div>
+<label for="background">3. Background chunein</label>
+<select id="background">
+<option value="white">White Background</option>
+<option value="color">Apna Color</option>
+<option value="transparent">Transparent PNG</option>
+</select>
 
-  <button id="remove" class="primary">AI se Background Remove Karein</button>
-  <div id="status" role="status">Photo select karke button dabayein.</div>
+<div id="colorBox" hidden>
+<label for="color">Background ka rang</label>
+<div id="colorRow">
+<input type="color" id="color" value="#ffffff">
+<span id="colorCode">#ffffff</span>
+</div>
+</div>
 
-  <div id="preview" hidden>
-    <h3>Taiyar Photo</h3>
-    <canvas id="canvas"></canvas>
-    <button id="download" class="download">Photo Download Karein</button>
-  </div>
+<button class="primary" id="remove">AI se Background Remove Karein</button>
+<div id="status" role="status">Pehle apni photo select karein.</div>
 
-  <p class="note">
-    Pehli baar AI model download hone mein samay lag sakta hai.
-    Original photo aapke browser mein process hoti hai.
-  </p>
+<div id="preview" hidden>
+<h3>Photo Preview</h3>
+<canvas id="canvas"></canvas>
+<p id="dimensions"></p>
+<button class="download" id="download">Photo Download Karein</button>
+</div>
+
+<p class="note">
+AI background removal ke liye internet zaroori hai.
+Passport photo ka sahi size aur background sambandhit form ke
+niyamon ke mutabik verify karein.
+</p>
 </section>
 </main>
-
-<footer>UNIQUE DIGITAL | Photo Editing Tool</footer>
-
 <script type="module">
-const photoInput = document.getElementById('photo');
-const background = document.getElementById('background');
-const colorInput = document.getElementById('color');
-const colorBox = document.getElementById('colorBox');
-const colorCode = document.getElementById('colorCode');
-const removeButton = document.getElementById('remove');
-const downloadButton = document.getElementById('download');
-const statusBox = document.getElementById('status');
-const preview = document.getElementById('preview');
-const canvas = document.getElementById('canvas');
+const $ = id => document.getElementById(id);
+const photoInput = $('photo');
+const sizeInput = $('size');
+const bgInput = $('background');
+const colorInput = $('color');
+const colorBox = $('colorBox');
+const colorCode = $('colorCode');
+const removeButton = $('remove');
+const statusBox = $('status');
+const preview = $('preview');
+const canvas = $('canvas');
 const ctx = canvas.getContext('2d');
 
 let originalFile = null;
-let transparentBlob = null;
-let resultUrl = null;
-let aiFunction = null;
+let cutoutBlob = null;
 let busy = false;
+let aiFunction = null;
 
-function status(message) {
+function status(message){
   statusBox.textContent = message;
 }
 
-background.addEventListener('change', () => {
-  colorBox.hidden = background.value !== 'color';
-  if (transparentBlob) renderResult();
-});
-
-colorInput.addEventListener('input', () => {
-  colorCode.textContent = colorInput.value;
-  if (transparentBlob && background.value === 'color') {
-    renderResult();
-  }
-});
-
 photoInput.addEventListener('change', () => {
   originalFile = photoInput.files[0] || null;
+  cutoutBlob = null;
   preview.hidden = true;
-  transparentBlob = null;
-  if (resultUrl) URL.revokeObjectURL(resultUrl);
-  resultUrl = null;
 
-  if (originalFile) {
-    status('Photo select ho gayi. Ab AI se Background Remove Karein dabayein.');
+  if(originalFile){
+    status('Photo select ho gayi. Ab AI Background Remove button dabayein.');
+  }else{
+    status('Pehle photo select karein.');
   }
 });
 
-async function loadAI() {
-  if (aiFunction) return aiFunction;
+bgInput.addEventListener('change', async () => {
+  colorBox.hidden = bgInput.value !== 'color';
+  if(cutoutBlob) await renderResult();
+});
 
-  status('AI model load ho raha hai. Pehli baar download mein samay lag sakta hai...');
+colorInput.addEventListener('input', async () => {
+  colorCode.textContent = colorInput.value;
+  if(cutoutBlob && bgInput.value === 'color'){
+    await renderResult();
+  }
+});
+
+sizeInput.addEventListener('change', async () => {
+  if(cutoutBlob) await renderResult();
+});
+
+async function loadAI(){
+  if(aiFunction) return aiFunction;
+
+  status('AI library internet se load ho rahi hai. Kripya intezar karein...');
 
   const mod = await import(
     'https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.7.0/+esm'
@@ -134,17 +141,18 @@ async function loadAI() {
 
   aiFunction = mod.default || mod.removeBackground;
 
-  if (typeof aiFunction !== 'function') {
-    throw new Error('AI library load hui, lekin function nahi mila.');
+  if(typeof aiFunction !== 'function'){
+    throw new Error('AI function nahi mili. Library load nahi hui.');
   }
+
   return aiFunction;
 }
 
 removeButton.addEventListener('click', async () => {
-  if (busy) return;
+  if(busy) return;
 
-  if (!originalFile) {
-    status('Bhai, pehle apni photo select karo.');
+  if(!originalFile){
+    status('Bhai, pehle photo select karo.');
     return;
   }
 
@@ -152,87 +160,126 @@ removeButton.addEventListener('click', async () => {
   removeButton.disabled = true;
   preview.hidden = true;
 
-  try {
+  try{
     const removeBackground = await loadAI();
-    status('AI background remove kar raha hai. Kripya intezar karein...');
+    status('AI background remove kar raha hai. Photo ke hisaab se samay lagega...');
 
-    transparentBlob = await removeBackground(originalFile);
+    cutoutBlob = await removeBackground(originalFile);
 
-    if (!transparentBlob || transparentBlob.size === 0) {
-      throw new Error('AI ne khaali image di. Dobara try karein.');
+    if(!cutoutBlob || !cutoutBlob.size){
+      throw new Error('AI se image nahi mili.');
     }
 
-    renderResult();
+    await renderResult();
     preview.hidden = false;
-    status('Background remove ho gaya! Ab color chunein aur photo download karein.');
-  } catch (error) {
-    console.error(error);
-    status('AI nahi chal paya. Internet check karein aur Live Server se page kholein. Zaroorat ho toh F12 Console ka error dekhein.');
-  } finally {
+    status('Background remove ho gaya! Ab preview check karke download karein.');
+
+  }catch(error){
+    console.error('AI background error:', error);
+    cutoutBlob = null;
+    status('AI ERROR: ' + (error.message || String(error)) +
+      ' | Internet check karein. GitHub Pages par page kholkar dobara try karein.');
+
+  }finally{
     busy = false;
     removeButton.disabled = false;
   }
 });
 
-function renderResult() {
-  if (!transparentBlob) return;
+function loadImage(blob){
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(blob);
+    const img = new Image();
 
-  const image = new Image();
-  const tempUrl = URL.createObjectURL(transparentBlob);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(img);
+    };
 
-  image.onload = () => {
-    canvas.width = image.naturalWidth;
-    canvas.height = image.naturalHeight;
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Image khul nahi paayi.'));
+    };
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    if (background.value === 'white') {
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    } else if (background.value === 'color') {
-      ctx.fillStyle = colorInput.value;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    ctx.drawImage(image, 0, 0);
-    URL.revokeObjectURL(tempUrl);
-
-    if (resultUrl) URL.revokeObjectURL(resultUrl);
-    canvas.toBlob(blob => {
-      if (blob) resultUrl = URL.createObjectURL(blob);
-    }, 'image/png');
-  };
-
-  image.onerror = () => {
-    URL.revokeObjectURL(tempUrl);
-    status('Photo preview nahi ho paayi. Dobara try karein.');
-  };
-
-  image.src = tempUrl;
+    img.src = url;
+  });
 }
 
-downloadButton.addEventListener('click', () => {
-  if (!transparentBlob || !canvas.width) {
-    status('Pehle AI background remove karein.');
+async function renderResult(){
+  if(!cutoutBlob) return;
+
+  try{
+    const img = await loadImage(cutoutBlob);
+    const selectedSize = sizeInput.value;
+
+    let width = img.naturalWidth;
+    let height = img.naturalHeight;
+
+    if(selectedSize === 'passport'){
+      width = 360;
+      height = 420;
+    }else if(selectedSize === '2x2'){
+      width = 600;
+      height = 600;
+    }
+
+    canvas.width = width;
+    canvas.height = height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    if(bgInput.value === 'white'){
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, width, height);
+    }else if(bgInput.value === 'color'){
+      ctx.fillStyle = colorInput.value;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    // Photo ko poora dikhayein; chehra crop nahi karein.
+    const scale = Math.min(width / img.width, height / img.height);
+    const drawWidth = img.width * scale;
+    const drawHeight = img.height * scale;
+    const x = (width - drawWidth) / 2;
+    const y = (height - drawHeight) / 2;
+
+    ctx.drawImage(img, x, y, drawWidth, drawHeight);
+
+    $('dimensions').textContent =
+      width + ' × ' + height + ' pixels';
+
+    preview.hidden = false;
+  }catch(error){
+    console.error(error);
+    status('Preview error: ' + (error.message || String(error)));
+    throw error;
+  }
+}
+
+$('download').addEventListener('click', () => {
+  if(!cutoutBlob || !canvas.width){
+    status('Pehle background remove karein.');
     return;
   }
 
   canvas.toBlob(blob => {
-    if (!blob) {
-      status('Download taiyar nahi hui. Dobara try karein.');
+    if(!blob){
+      status('Download file nahi ban paayi. Dobara try karein.');
       return;
     }
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
+
     link.href = url;
-    link.download = background.value === 'transparent'
+    link.download = bgInput.value === 'transparent'
       ? 'unique-digital-transparent.png'
-      : 'unique-digital-white-background.png';
+      : 'unique-digital-passport-photo.png';
 
     document.body.appendChild(link);
     link.click();
     link.remove();
+
     setTimeout(() => URL.revokeObjectURL(url), 2000);
     status('Photo download shuru ho gaya!');
   }, 'image/png');
