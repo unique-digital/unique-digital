@@ -3,39 +3,74 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNIQUE DIGITAL - Passport Photo Maker</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101b3d">
+<title>UNIQUE DIGITAL | Pro Photo Studio</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#eef4ff;color:#172554}
-header{background:#102d69;color:white;text-align:center;padding:24px 12px}
-header h1{margin:0 0 8px}
-main{max-width:650px;margin:22px auto;padding:18px}
-.card{background:white;border-radius:16px;padding:22px;box-shadow:0 4px 18px #0001}
-label{display:block;margin:16px 0 8px;font-weight:bold}
-input,select,button{width:100%;padding:12px;border-radius:8px;font-size:16px}
-input,select{border:1px solid #bbc8dc;background:white}
-button{border:0;background:#155eef;color:white;font-weight:bold;margin-top:12px;cursor:pointer}
-button.secondary{background:#e4ecff;color:#173675}
-canvas{display:block;max-width:100%;height:auto;margin:18px auto;border:1px dashed #9caac0;background:white}
-.note{font-size:14px;line-height:1.6;color:#475569}
-footer{text-align:center;padding:20px;color:#64748b}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f5fc;color:#17213d}
+header{background:linear-gradient(120deg,#101b3d,#2455a7);color:white;padding:23px 16px;text-align:center}
+header h1{margin:0;font-size:27px;letter-spacing:1px}
+header p{margin:8px 0 0;color:#d6e3ff}
+main{max-width:1000px;margin:25px auto;padding:0 14px 35px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.card{background:white;border:1px solid #e1e7f2;border-radius:17px;padding:20px;box-shadow:0 8px 28px #182b510c;min-width:0}
+h2{font-size:20px;margin:0 0 16px}
+label{display:block;font-weight:bold;font-size:14px;margin:16px 0 8px}
+input,select,button{font:inherit}
+input[type=file],select,input[type=color],input[type=range]{width:100%}
+input[type=file],select{padding:11px;border:1px solid #cbd5e1;border-radius:9px;background:white}
+input[type=color]{height:42px;border:0;background:white;cursor:pointer}
+input[type=range]{accent-color:#3168ec}
+button{border:0;border-radius:10px;padding:13px 12px;width:100%;background:#2463eb;color:white;font-weight:bold;cursor:pointer;margin-top:10px}
+button:hover{filter:brightness(.94)}
+button:disabled{opacity:.6;cursor:wait}
+.secondary{background:#e9efff;color:#20458d}
+.palette{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.swatch{border:2px solid #e2e8f0;border-radius:9px;padding:8px 3px;background:white;cursor:pointer;text-align:center;font-size:12px}
+.swatch span{display:block;width:100%;height:25px;border-radius:5px;margin-bottom:6px;border:1px solid #0001}
+.swatch.active{border-color:#2463eb}
+#preview{display:block;width:100%;max-height:570px;object-fit:contain;margin:0 auto;background:#f8fafc;border:1px dashed #bac5d7;border-radius:10px}
+.status{font-size:13px;line-height:1.6;padding:11px;border-radius:9px;background:#eff5ff;color:#24477f;margin-top:13px;overflow-wrap:anywhere}
+.small{font-size:12px;color:#64748b;line-height:1.6}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+footer{text-align:center;padding:20px;color:#64748b;font-size:13px}
+@media(max-width:700px){.layout{grid-template-columns:1fr}main{margin-top:15px}.card{padding:16px}header h1{font-size:23px}}
 </style>
 </head>
 <body>
 <header>
 <h1>UNIQUE DIGITAL</h1>
-<div>Professional Passport Photo Maker</div>
+<p>✨ Professional Passport Photo Studio</p>
 </header>
-<main>
-<div class="card">
-<h2>Passport Photo Studio</h2>
-<p>Upload photo, choose size and download your photo.</p>
 
-<label for="photo">1. Upload your photo</label>
+<main>
+<div class="layout">
+<section class="card">
+<h2>📸 Photo Editor</h2>
+
+<label for="photo">1. Upload Photo</label>
 <input type="file" id="photo" accept="image/*">
 
-<label for="size">2. Select photo size</label>
+<button id="remove">✨ AI Remove Background</button>
+<p class="small">Internet zaroori hai. Pehli baar AI model download hone mein waqt lag sakta hai.</p>
+
+<label>2. Background Colour</label>
+<div class="palette" id="palette">
+<button class="swatch active" data-color="#ffffff"><span style="background:#ffffff"></span>White</button>
+<button class="swatch" data-color="#b8dcff"><span style="background:#b8dcff"></span>Blue</button>
+<button class="swatch" data-color="#f44336"><span style="background:#f44336"></span>Red</button>
+<button class="swatch" data-color="#27ae60"><span style="background:#27ae60"></span>Green</button>
+<button class="swatch" data-color="#ffeb3b"><span style="background:#ffeb3b"></span>Yellow</button>
+<button class="swatch" data-color="#808080"><span style="background:#808080"></span>Grey</button>
+<button class="swatch" data-color="#111111"><span style="background:#111111"></span>Black</button>
+<button class="swatch" data-color="#ffb6c1"><span style="background:#ffb6c1"></span>Pink</button>
+</div>
+
+<label for="custom">Apna Colour Chunein</label>
+<input type="color" id="custom" value="#ffffff">
+
+<label for="size">3. Passport Photo Size</label>
 <select id="size">
 <option value="1.2,1.4">1.2 × 1.4 inch</option>
 <option value="1.4,1.8">1.4 × 1.8 inch</option>
@@ -43,270 +78,174 @@ footer{text-align:center;padding:20px;color:#64748b}
 <option value="3.5,4.5">3.5 × 4.5 cm</option>
 </select>
 
-<label for="zoom">3. Adjust photo zoom</label>
-<input id="zoom" type="range" min="1" max="3" step="0.01" value="1">
+<label for="zoom">4. Photo Zoom</label>
+<input id="zoom" type="range" min="0.5" max="3" step="0.05" value="1">
 
-<label for="bg">Preview background</label>
-<select id="bg">
-<option value="#ffffff">White</option>
-<option value="#eaf2ff">Light blue</option>
-</select>
-<button id="removeBg" type="button">
-  ✨ AI Remove Background
-</button>
-<p id="status" class="note">
-  Photo upload karein, phir AI Remove Background dabayein.
-</p>
+<label for="bright">5. Brightness</label>
+<input id="bright" type="range" min="50" max="150" value="100">
+
+<label for="contrast">6. Contrast</label>
+<input id="contrast" type="range" min="50" max="150" value="100">
+
+<label for="beauty">7. Soft Beauty / Smooth Look</label>
+<input id="beauty" type="range" min="0" max="2" step="1" value="0">
+<p class="small">Yeh basic softening effect hai, full AI skin retouch nahi.</p>
+
+<div class="row">
+<button id="reset" class="secondary">Reset Adjustments</button>
+<button id="download">⬇ Download HD</button>
+</div>
+<button id="print" class="secondary">🖨 Print Photo</button>
+
+<div id="status" class="status">Pehle apni photo upload karein.</div>
+</section>
+
+<section class="card">
+<h2>🪄 Live Photo Preview</h2>
 <canvas id="preview" width="360" height="420"></canvas>
-
-<button id="download">Download HD Photo</button>
-<button class="secondary" id="print">Print Photo</button>
-<a href="https://www.photoroom.com/tools/background-remover"
-target="_blank" rel="noopener noreferrer">
-<button class="secondary" type="button">Remove Background with PhotoRoom</button>
-</a>
-
-<p class="note">
-Photo size is prepared at 300 DPI. Adjust the zoom to fit your face.
-Changing the preview background does not remove the original photo's
-background. Use PhotoRoom for automatic background removal, then upload
-the processed photo here.
-</p>
+<p class="small">AI background removal ke baad transparent background par chuna hua colour lagaya jayega. Agar AI fail hota hai, original background nahi hatega.</p>
+</section>
 </div>
 </main>
-<footer>© UNIQUE DIGITAL</footer>
 
-<script>
-const input=document.getElementById('photo');
-const size=document.getElementById('size');
-const zoom=document.getElementById('zoom');
-const bg=document.getElementById('bg');
-const canvas=document.getElementById('preview');
-const ctx=canvas.getContext('2d');
-let img=null;
+<footer>© 2026 UNIQUE DIGITAL · Digital Service Center</footer>
+
+<script type="module">
+const $ = id => document.getElementById(id);
+const input = $("photo"), canvas = $("preview");
+const ctx = canvas.getContext("2d");
+const status = $("status");
+let original = null, processed = null, image = null;
+let color = "#ffffff", busy = false;
 
 function dimensions(){
- const v=size.value.split(',').map(Number);
- if(v[0]>3) return [Math.round(v[0]/2.54*300),Math.round(v[1]/2.54*300)];
+ const v = $("size").value.split(",").map(Number);
+ if(v[0] > 3) return [
+  Math.round(v[0]/2.54*300),Math.round(v[1]/2.54*300)
+ ];
  return [Math.round(v[0]*300),Math.round(v[1]*300)];
 }
+
+function loadImage(blob){
+ return new Promise((resolve,reject)=>{
+  const url=URL.createObjectURL(blob);
+  const im=new Image();
+  im.onload=()=>{URL.revokeObjectURL(url);resolve(im)};
+  im.onerror=()=>{URL.revokeObjectURL(url);reject(Error("Photo open nahi hui"))};
+  im.src=url;
+ });
+}
+
 function draw(){
  const [w,h]=dimensions();
- canvas.width=w; canvas.height=h;
- ctx.fillStyle=bg.value;
- ctx.fillRect(0,0,w,h);
- if(!img) return;
- const scale=Math.max(w/img.width,h/img.height)*Number(zoom.value);
- const dw=img.width*scale,dh=img.height*scale;
- ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
+ canvas.width=w;canvas.height=h;
+ ctx.fillStyle=color;ctx.fillRect(0,0,w,h);
+ if(!image)return;
+
+ const scale=Math.max(w/image.width,h/image.height)*Number($("zoom").value);
+ const dw=image.width*scale,dh=image.height*scale;
+ const b=Number($("bright").value);
+ const c=Number($("contrast").value);
+ const soft=Number($("beauty").value);
+ ctx.save();
+ ctx.filter=`brightness(${b}%) contrast(${c}%)${soft ? " blur("+(soft*0.25)+"px)" : ""}`;
+ ctx.drawImage(image,(w-dw)/2,(h-dh)/2,dw,dh);
+ ctx.restore();
 }
-input.addEventListener('change',()=>{
- const file=input.files[0];
- if(!file) return;
- if(!file.type.startsWith('image/')){
-  alert('Please choose an image file.');
-  return;
+
+input.addEventListener("change",async()=>{
+ const file=input.files[0];if(!file)return;
+ if(!file.type.startsWith("image/")){
+  status.textContent="Please image file chunein.";return;
  }
- const url=URL.createObjectURL(file);
- const image=new Image();
- image.onload=()=>{
-  img=image;
-  zoom.value=1;
+ if(file.size>20*1024*1024){
+  status.textContent="Photo 20 MB se chhoti honi chahiye.";return;
+ }
+ try{
+  status.textContent="Photo load ho rahi hai...";
+  original=file;processed=null;image=await loadImage(file);
+  $("zoom").value=1;$("bright").value=100;
+  $("contrast").value=100;$("beauty").value=0;
   draw();
-  URL.revokeObjectURL(url);
- };
- image.onerror=()=>alert('Could not open this photo.');
- image.src=url;
+  status.textContent="Photo upload ho gayi. Background hatane ke liye AI button dabayein.";
+ }catch(e){status.textContent=e.message}
 });
-size.addEventListener('change',draw);
-zoom.addEventListener('input',draw);
-bg.addEventListener('change',draw);
-document.getElementById('download').addEventListener('click',()=>{
- if(!img){alert('Please upload a photo first.');return;}
- const a=document.createElement('a');
- a.download='unique-digital-passport-photo.jpg';
- a.href=canvas.toDataURL('image/jpeg',0.98);
+
+$("remove").addEventListener("click",async()=>{
+ if(!original){status.textContent="Pehle photo upload karein.";return}
+ if(busy)return;
+ busy=true;$("remove").disabled=true;
+ $("remove").textContent="AI processing...";
+ status.textContent="AI model load ho raha hai. Pehli baar kai minute lag sakte hain. Is tab ko band na karein.";
+ try{
+  const mod=await import("https://esm.sh/@imgly/background-removal@1.7.0");
+  const removeBackground=mod.default;
+  const result=await removeBackground(original,{
+   model:"isnet_quint8",
+   output:{format:"image/png"}
+  });
+  processed=result;
+  image=await loadImage(result);
+  draw();
+  status.textContent="Background remove ho gaya! Ab colour chunein aur download karein.";
+ }catch(e){
+  console.error(e);
+  status.textContent="AI load nahi hua: "+(e.message||"Network error")+". Internet check karein. Agar phir bhi fail ho, Console ka error bhejein.";
+ }finally{
+  busy=false;$("remove").disabled=false;
+  $("remove").textContent="✨ AI Remove Background";
+ }
+});
+
+document.querySelectorAll(".swatch").forEach(btn=>{
+ btn.addEventListener("click",()=>{
+  color=btn.dataset.color;
+  $("custom").value=color;
+  document.querySelectorAll(".swatch").forEach(b=>b.classList.toggle("active",b===btn));
+  draw();
+ });
+});
+$("custom").addEventListener("input",()=>{
+ color=$("custom").value;
+ document.querySelectorAll(".swatch").forEach(b=>b.classList.toggle("active",b.dataset.color===color));
+ draw();
+});
+
+["size","zoom","bright","contrast","beauty"].forEach(id=>{
+ $(id).addEventListener("input",draw);
+});
+
+$("reset").addEventListener("click",()=>{
+ $("zoom").value=1;$("bright").value=100;
+ $("contrast").value=100;$("beauty").value=0;
+ color="#ffffff";$("custom").value=color;
+ document.querySelectorAll(".swatch").forEach(b=>b.classList.toggle("active",b.dataset.color===color));
+ draw();
+});
+
+$("download").addEventListener("click",()=>{
+ if(!image){status.textContent="Pehle photo upload karein.";return}
+ const a=document.createElement("a");
+ a.download="unique-digital-photo.png";
+ a.href=canvas.toDataURL("image/png");
  a.click();
 });
-document.getElementById('print').addEventListener('click',()=>{
- if(!img){alert('Please upload a photo first.');return;}
- const data=canvas.toDataURL('image/jpeg',0.98);
- const win=window.open('','_blank');
- if(!win){alert('Please allow pop-ups to print.');return;}
- win.document.write('<html><head><title>Print Photo</title></head><body style="margin:0;text-align:center"><img id="p" src="'+data+'" style="width:'+dimensions()[0]/300+'in;height:'+dimensions()[1]/300+'in"><script>window.onload=()=>window.print();<\/script></body></html>');
- win.document.close();
-});
-draw();
-</
-<script type="module">
-import removeBackground from "https://esm.sh/@imgly/background-removal@1.7.0";
 
-const input = document.getElementById("photo");
-const size = document.getElementById("size");
-const zoom = document.getElementById("zoom");
-const bg = document.getElementById("bg");
-const canvas = document.getElementById("preview");
-const ctx = canvas.getContext("2d");
-const removeBtn = document.getElementById("removeBg");
-const status = document.getElementById("status");
-
-let img = null;
-let originalFile = null;
-let busy = false;
-
-function dimensions() {
-  const v = size.value.split(",").map(Number);
-  if (v[0] > 3) {
-    return [
-      Math.round(v[0] / 2.54 * 300),
-      Math.round(v[1] / 2.54 * 300)
-    ];
-  }
-  return [Math.round(v[0] * 300), Math.round(v[1] * 300)];
-}
-
-function draw() {
-  const [w, h] = dimensions();
-  canvas.width = w;
-  canvas.height = h;
-  ctx.fillStyle = bg.value;
-  ctx.fillRect(0, 0, w, h);
-
-  if (!img) return;
-
-  const scale = Math.max(w / img.width, h / img.height)
-    * Number(zoom.value);
-  const dw = img.width * scale;
-  const dh = img.height * scale;
-
-  ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
-}
-
-function loadImage(blob) {
-  return new Promise((resolve, reject) => {
-    const url = URL.createObjectURL(blob);
-    const image = new Image();
-
-    image.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve(image);
-    };
-
-    image.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Photo open nahi hui."));
-    };
-
-    image.src = url;
-  });
-}
-
-input.addEventListener("change", async () => {
-  const file = input.files[0];
-  if (!file) return;
-
-  if (!file.type.startsWith("image/")) {
-    alert("Please choose an image file.");
-    return;
-  }
-
-  try {
-    originalFile = file;
-    img = await loadImage(file);
-    zoom.value = 1;
-    draw();
-    status.textContent =
-      "Photo upload ho gayi. Ab AI Remove Background dabayein.";
-  } catch (error) {
-    status.textContent = error.message;
-  }
-});
-
-removeBtn.addEventListener("click", async () => {
-  if (!originalFile) {
-    alert("Pehle photo upload karein.");
-    return;
-  }
-
-  if (busy) return;
-
-  busy = true;
-  removeBtn.disabled = true;
-  removeBtn.textContent = "AI background remove kar raha hai...";
-  status.textContent =
-    "Kripya intezar karein. Pehli baar AI model download hone mein waqt lag sakta hai.";
-
-  try {
-    const result = await removeBackground(originalFile, {
-      model: "isnet_quint8",
-      output: {
-        format: "image/png"
-      }
-    });
-
-    img = await loadImage(result);
-    draw();
-
-    status.textContent =
-      "Background remove ho gaya! Ab White ya Light Blue chunein.";
-  } catch (error) {
-    console.error(error);
-    status.textContent =
-      "AI tool load nahi hua. Internet check karke dobara koshish karein.";
-    alert("AI background removal fail hua. Internet check karke dobara try karein.");
-  } finally {
-    busy = false;
-    removeBtn.disabled = false;
-    removeBtn.textContent = "✨ AI Remove Background";
-  }
-});
-
-size.addEventListener("change", draw);
-zoom.addEventListener("input", draw);
-bg.addEventListener("change", draw);
-
-document.getElementById("download").addEventListener("click", () => {
-  if (!img) {
-    alert("Pehle photo upload karein.");
-    return;
-  }
-
-  const a = document.createElement("a");
-  a.download = "unique-digital-passport-photo.png";
-  a.href = canvas.toDataURL("image/png");
-  a.click();
-});
-
-document.getElementById("print").addEventListener("click", () => {
-  if (!img) {
-    alert("Pehle photo upload karein.");
-    return;
-  }
-
-  const [w, h] = dimensions();
-  const win = window.open("", "_blank");
-
-  if (!win) {
-    alert("Printing ke liye pop-ups allow karein.");
-    return;
-  }
-
-  const data = canvas.toDataURL("image/png");
-
-  win.document.write(
-    '<html><head><title>Print Photo</title></head>' +
-    '<body style="margin:0;text-align:center">' +
-    '<img src="' + data + '" style="width:' +
-    w / 300 + 'in;height:' + h / 300 +
-    'in"><script>window.onload=()=>window.print();<\/script>' +
-    '</body></html>'
-  );
-
-  win.document.close();
+$("print").addEventListener("click",()=>{
+ if(!image){status.textContent="Pehle photo upload karein.";return}
+ const win=window.open("","_blank");
+ if(!win){status.textContent="Print ke liye pop-ups allow karein.";return}
+ const [w,h]=dimensions();
+ const img=win.document.createElement("img");
+ img.src=canvas.toDataURL("image/png");
+ img.style.width=(w/300)+"in";
+ img.style.height=(h/300)+"in";
+ img.onload=()=>{win.focus();win.print()};
+ win.document.body.style.margin="0";
+ win.document.body.appendChild(img);
 });
 
 draw();
 </script>
->
 </body>
 </html>
