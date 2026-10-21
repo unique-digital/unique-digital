@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIQUE DIGITAL - Passport Photo Maker</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f0f5fc;margin:0;color:#173153}
+header{background:#102d59;color:white;text-align:center;padding:22px}
+header h1{margin:0;color:#65dcff}
+main{max-width:650px;margin:25px auto;padding:20px}
+.card{background:white;padding:22px;border-radius:14px;box-shadow:0 4px 15px #0001}
+label{display:block;font-weight:bold;margin:18px 0 8px}
+input,select{width:100%;padding:12px;border:1px solid #bbb;border-radius:7px;box-sizing:border-box}
+button{padding:12px 18px;margin:12px 5px 0 0;background:#1769aa;color:white;border:0;border-radius:7px;cursor:pointer}
+canvas{display:block;max-width:100%;height:auto;margin:20px auto;background:white;border:1px solid #ddd}
+#status{color:#17603a}
+</style>
+</head>
+<body>
+<header>
+<h1>UNIQUE DIGITAL</h1>
+<p>YOUR DIGITAL WORK, MADE EASY</p>
+</header>
+<main>
+<div class="card">
+<h2>📸 Passport Photo Maker</h2>
+<p>Photo upload karein, size chunein aur download karein.</p>
+
+
+<a href="https://www.photoroom.com/tools/background-remover"
+   target="_blank"
+   rel="noopener noreferrer"
+   style="display:block;background:#1769aa;color:white;padding:14px;text-align:center;border-radius:8px;text-decoration:none;font-weight:bold;">
+   AI se Background Remove Karein
+</a>
+<br>
+
+<label>1. Photo upload karein</label>
+<input type="file" id="file" accept="image/*">
+
+<label>2. Photo size chunein</label>
+<select id="size">
+<option value="600,700">1.2 × 1.4 inch (300 DPI layout)</option>
+<option value="600,600">2 × 2 inch (300 DPI layout)</option>
+<option value="413,531">3.5 × 4.5 cm (approx. 300 DPI)</option>
+</select>
+
+<label>3. Canvas background</label>
+<select id="bg">
+<option value="white">White</option>
+<option value="original">Original image area</option>
+</select>
+
+<canvas id="canvas" width="600" height="700"></canvas>
+<p id="status">Pehle photo upload karein.</p>
+
+<button id="download">Download Photo</button>
+<button onclick="window.print()">Print Page</button>
+<p>Note: White canvas photo ke andar ka background remove nahi karta. Photo ko sahi official dimensions ke mutabiq check karein.</p>
+</div>
+</main>
+<script>
+const file=document.getElementById('file');
+const size=document.getElementById('size');
+const bg=document.getElementById('bg');
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+const status=document.getElementById('status');
+let img=new Image(),loaded=false;
+
+function render(){
+ if(!loaded)return;
+ const [w,h]=size.value.split(',').map(Number);
+ canvas.width=w;canvas.height=h;
+ ctx.fillStyle=bg.value==='white'?'white':'#eeeeee';
+ ctx.fillRect(0,0,w,h);
+ const scale=Math.max(w/img.width,h/img.height);
+ const dw=img.width*scale,dh=img.height*scale;
+ ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
+ status.textContent='Photo taiyar hai! Ab download kar sakte hain.';
+}
+file.addEventListener('change',()=>{
+ const f=file.files[0];
+ if(!f)return;
+ if(!f.type.startsWith('image/')){status.textContent='Image file select karein.';return;}
+ const url=URL.createObjectURL(f);
+ img.onload=()=>{loaded=true;render();URL.revokeObjectURL(url)};
+ img.onerror=()=>{status.textContent='Photo open nahi hui.';URL.revokeObjectURL(url)};
+ img.src=url;
+ status.textContent='Photo load ho rahi hai...';
+});
+size.addEventListener('change',render);
+bg.addEventListener('change',render);
+document.getElementById('download').addEventListener('click',()=>{
+ if(!loaded){alert('Pehle photo upload karein.');return;}
+ const a=document.createElement('a');
+ a.download='unique-digital-passport-photo.png';
+ a.href=canvas.toDataURL('image/png');
+ a.click();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNIQUE DIGITAL - All-in-One Services</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#172554}
+header{background:#102b54;color:white;padding:20px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:27px;font-weight:bold}
+.logo span{color:#45d7ff}
+header p{font-size:12px;margin:5px 0;color:#cbdcf6}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+.hero{padding:55px 20px;text-align:center;color:white;background:linear-gradient(120deg,#102b54,#167ac0)}
+.hero h1{font-size:clamp(28px,5vw,45px);margin:0 0 14px}
+.hero p{line-height:1.7;color:#e1efff}
+.search{width:min(100%,550px);padding:15px;border:0;border-radius:9px;font-size:16px;margin-top:15px}
+main{max-width:1200px;margin:auto;padding:35px 20px}
+h2{margin-bottom:8px}
+.subtitle{color:#64748b;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:18px;margin-top:25px}
+.card{background:white;border:1px solid #e0e7f0;border-radius:15px;padding:22px;box-shadow:0 5px 18px #18345a0c;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 9px 24px #18345a18}
+.emoji{font-size:35px}
+.card h3{margin:14px 0 8px}
+.card p{font-size:14px;line-height:1.65;color:#64748b;min-height:45px}
+button{border:0;border-radius:8px;padding:12px 16px;background:#1769aa;color:white;font-weight:bold;cursor:pointer}
+button:hover{background:#102b54}
+.status{display:none;margin-top:25px;padding:20px;background:#e0f2fe;border-radius:12px;line-height:1.8}
+.status input,.status textarea{display:block;width:100%;padding:12px;margin:10px 0;border:1px solid #cbd5e1;border-radius:7px}
+footer{margin-top:35px;background:#102b54;color:#dbeafe;padding:30px 20px;text-align:center;line-height:1.8}
+</style>
+</head>
+
+<body>
+<header>
+  <div>
+    <div class="logo">UNIQUE <span>DIGITAL</span></div>
+    <p>YOUR DIGITAL WORK, MADE EASY</p>
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About Us</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to UNIQUE DIGITAL</h1>
+  <p>Photo, Forms, Documents, PDF aur Graphics — sab kuch ek hi jagah!</p>
+  <input class="search" id="search" placeholder="Search your service..." oninput="searchServices()">
+</section>
+
+<main id="services">
+  <h2>Our Online Services</h2>
+  <p class="subtitle">Apni zaroorat ka tool chunein. Aur services aage add hoti rahengi.</p>
+
+  <div class="grid" id="grid">
+
+    <article class="card" data-search="passport photo crop background">
+      <div class="emoji">📸</div>
+      <h3>Passport Photo Maker</h3>
+      <p>Passport-size photo aur white background tools.</p>
+      <button onclick="openService('Passport Photo Maker')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="image resize compress signature">
+      <div class="emoji">🖼️</div>
+      <h3>Image & Signature</h3>
+      <p>Image resize, signature resize aur compression.</p>
+      <button onclick="openService('Image & Signature')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="pdf merge compress convert jpg">
+      <div class="emoji">📄</div>
+      <h3>PDF Tools</h3>
+      <p>PDF merge, compress aur file conversion.</p>
+      <button onclick="openService('PDF Tools')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="application letter form">
+      <div class="emoji">📝</div>
+      <h3>Application Maker</h3>
+      <p>Applications aur letters taiyar karne mein madad.</p>
+      <button onclick="openService('Application Maker')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="biodata marriage resume cv">
+      <div class="emoji">📋</div>
+      <h3>Biodata & Resume</h3>
+      <p>Professional biodata aur resume banane ka section.</p>
+      <button onclick="openService('Biodata & Resume')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="poster banner visiting card graphics">
+      <div class="emoji">🎨</div>
+      <h3>Graphics & Design</h3>
+      <p>Poster, banner aur visiting card design services.</p>
+      <button onclick="openService('Graphics & Design')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="hindi marathi typing language">
+      <div class="emoji">⌨️</div>
+      <h3>Hindi & Marathi Tools</h3>
+      <p>Typing aur document preparation services.</p>
+      <button onclick="openService('Hindi & Marathi Tools')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="word excel print office document">
+      <div class="emoji">💻</div>
+      <h3>Office & Print Tools</h3>
+      <p>Documents ko printing ke liye taiyar karein.</p>
+      <button onclick="openService('Office & Print Tools')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="id card photo card design">
+      <div class="emoji">🪪</div>
+      <h3>ID Card Maker</h3>
+      <p>Basic ID card layouts banane ka section.</p>
+      <button onclick="openService('ID Card Maker')">Open Service</button>
+    </article>
+
+    <article class="card" data-search="photo print 4x6 sheet">
+      <div class="emoji">🖨️</div>
+      <h3>Photo Print Sheet</h3>
+      <p>Multiple photos ko print layout mein arrange karne ka section.</p>
+      <button onclick="openService('Photo Print Sheet')">Open Service</button>
+    </article>
+
+  </div>
+
+  <div class="status" id="panel"></div>
+</main>
+
+<section id="about" style="padding:25px;text-align:center">
+  <h2>About UNIQUE DIGITAL</h2>
+  <p class="subtitle">Aapke digital kaam ko aasan aur tez banane ka ek hi platform.</p>
+</section>
+
+<footer>
+  <strong>UNIQUE DIGITAL</strong><br>
+  Your Digital Work, Made Easy<br>
+  © 2026 UNIQUE DIGITAL
+</footer>
+
+<script>
+function searchServices(){
+  const q=document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(card=>{
+    card.style.display=(card.innerText+' '+card.dataset.search).toLowerCase().includes(q)?'':'none';
+  });
+}
+
+function openService(name){
+  const panel=document.getElementById('panel');
+  panel.style.display='block';
+
+  if(name==='Application Maker'){
+    panel.innerHTML='<h2>Application Maker</h2><p>Application ke liye details bharein:</p><input id="person" placeholder="Aapka poora naam"><input id="purpose" placeholder="Application ka subject"><textarea id="details" placeholder="Application ki details"></textarea><button onclick="makeLetter()">Application taiyar karein</button><div id="result"></div>';
+  }else if(name==='Biodata & Resume'){
+    panel.innerHTML='<h2>Biodata & Resume</h2><input id="bioName" placeholder="Poora naam"><input id="bioEducation" placeholder="Education"><input id="bioWork" placeholder="Work / Profession"><button onclick="makeBio()">Biodata preview banayein</button><div id="result"></div>';
+  }else{
+    panel.innerHTML='<h2>'+name+'</h2><p>Ye service UNIQUE DIGITAL mein plan ki gayi hai. Iska working tool agle development step mein add hoga.</p><p>Filhaal ye homepage ka service preview hai.</p>';
+  }
+  panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function makeLetter(){
+  const name=document.getElementById('person').value;
+  const purpose=document.getElementById('purpose').value;
+  const details=document.getElementById('details').value;
+  document.getElementById('result').innerHTML='<hr><h3>Application Preview</h3><p><b>Name:</b> '+safe(name)+'</p><p><b>Subject:</b> '+safe(purpose)+'</p><p>'+safe(details).replace(/\n/g,'<br>')+'</p><button onclick="window.print()">Print / Save PDF</button>';
+}
+function makeBio(){
+  const n=document.getElementById('bioName').value;
+  const e=document.getElementById('bioEducation').value;
+  const w=document.getElementById('bioWork').value;
+  document.getElementById('result').innerHTML='<hr><h3>Biodata Preview</h3><p><b>Name:</b> '+safe(n)+'</p><p><b>Education:</b> '+safe(e)+'</p><p><b>Profession:</b> '+safe(w)+'</p><button onclick="window.print()">Print / Save PDF</button>';
+}
+function safe(s){
+  return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
