@@ -179,7 +179,10 @@ $("remove").addEventListener("click",async()=>{
  status.textContent="AI model load ho raha hai. Pehli baar kai minute lag sakte hain. Is tab ko band na karein.";
  try{
   const mod=await import("https://esm.sh/@imgly/background-removal@1.7.0");
-  const removeBackground=mod.default;
+const removeBackground = mod.removeBackground || mod.default;
+if (typeof removeBackground !== "function") {
+  throw new Error("AI function load nahi hua. Library loading fail hui.");
+}
   const result=await removeBackground(original,{
    model:"isnet_quint8",
    output:{format:"image/png"}
